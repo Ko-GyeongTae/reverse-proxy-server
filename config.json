@@ -1,0 +1,12 @@
+{
+  "target_host": {
+    "user": "http://localhost:1002/",
+    "post": "http://localhost:1001/"
+  },
+  "local_port": "8080",
+  "access_control_allows_origin": "http://localhost:3000",
+  "with_credentials": "true",
+  "session_cookie_name": "",
+  "ssl_key_path": "",
+  "ssl_cert_path": ""
+}
