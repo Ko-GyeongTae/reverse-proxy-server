@@ -37,16 +37,17 @@ type baseHandle struct{}
 func (h *baseHandle) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 	prefix := strings.Split(path, "/")[1]
+	fmt.Println(path)
 
 	if r.Method == "OPTIONS" {
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Origin", config.ACCESS_CONTROL_ALLOWS_ORIGIN)
 		w.Header().Set("Access-Control-Allow-Headers", "Access-Control-Allow-Origin, content-type, Authorization")
-		w.Header().Set("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE, PATCH")
+		w.Header().Set("Access-Control-Allow-Methods", "*")
 		w.Header().Set("Access-Control-Expose-Headers", "Set-Cookie, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Credential, Authorization")
 		w.Header().Set("Vary", "Origin")
 		w.Header().Set("Vary", "Access-Control-Request-Method")
 		w.Header().Set("Vary", "Access-Control-Request-Headers")
-		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Credentials", config.WITH_CREDENTIALS)
 		return
 	} else {
 		log.Printf("%s %s -> GRP_Proxy -> %s", r.Method, r.Host+r.URL.RequestURI(), r.URL.RequestURI())
