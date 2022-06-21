@@ -2,7 +2,8 @@
   "target_host": {
     "user": "http://localhost:4101",
     "post": "http://localhost:4102",
-    "upload": "http://localhost:4102"
+    "upload": "http://localhost:4102",
+    "public": "http://localhost:4102"
   },
   "local_port": "8080",
   "access_control_allows_origin": "http://localhost:3000",

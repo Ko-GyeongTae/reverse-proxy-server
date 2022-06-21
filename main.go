@@ -24,11 +24,7 @@ type Config struct {
 }
 
 var (
-	// hostTarget = map[string]string{
-	// 	"user": "http://122.34.166.47:4101/",
-	// 	"post": "http://localhost:4102/",
-	// }
-	hostProxy = make(map[string]*httputil.ReverseProxy)// = map[string]*httputil.ReverseProxy{}
+	hostProxy = make(map[string]*httputil.ReverseProxy)
 	config Config
 )
 
@@ -42,7 +38,7 @@ func (h *baseHandle) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "OPTIONS" {
 		w.Header().Set("Access-Control-Allow-Origin", config.ACCESS_CONTROL_ALLOWS_ORIGIN)
 		w.Header().Set("Access-Control-Allow-Headers", "Access-Control-Allow-Origin, content-type, Authorization")
-		w.Header().Set("Access-Control-Allow-Methods", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, PUT, GET, PATCH, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Expose-Headers", "Set-Cookie, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Credential, Authorization")
 		w.Header().Set("Vary", "Origin")
 		w.Header().Set("Vary", "Access-Control-Request-Method")
@@ -100,7 +96,7 @@ func corsHeaderModify(resp *http.Response) error {
 	// Set Basic Cors related header
 	resp.Header.Set("Access-Control-Allow-Origin", config.ACCESS_CONTROL_ALLOWS_ORIGIN)
 	resp.Header.Set("Access-Control-Allow-Headers", "Access-Control-Allow-Origin, content-type")
-	resp.Header.Set("Access-Control-Allow-Methods", "*")
+	resp.Header.Set("Access-Control-Allow-Methods", "POST, PUT, GET, PATCH, DELETE, OPTIONS")
 	resp.Header.Set("Access-Control-Expose-Headers", "Set-Cookie, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Allow-Credential, Authorization")
 	resp.Header.Set("Vary", "Origin")
 	resp.Header.Set("Vary", "Access-Control-Request-Method")
